@@ -1,0 +1,32 @@
+{
+  "credentials": {
+    "username": "test_user",
+    "password": "test_password"
+  },
+  "search_terms": [
+    "TestZeus Hercules",
+    "AI test automation",
+    "No-code testing"
+  ],
+  "salesforce": {
+    "username": "user@example.com",
+    "password": "securePassword",
+    "accounts": [
+      {
+        "name": "Test Account",
+        "type": "Customer",
+        "website": "www.testaccount.com",
+        "phone": "123-456-7890"
+      }
+    ]
+  },
+  "api": {
+    "base_url": "https://jsonplaceholder.typicode.com",
+    "auth_token": "sample_token",
+    "payload": {
+      "title": "Test Post",
+      "body": "This is a test post",
+      "userId": 1
+    }
+  }
+} 

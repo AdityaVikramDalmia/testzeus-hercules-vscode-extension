@@ -1,0 +1,1048 @@
+{
+  "name": "testzeus-hercules-test",
+  "displayName": "TestZeus Hercules",
+  "description": "VS Code extension for TestZeus Hercules - the world's first AI testing agent",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.99.1"
+  },
+  "categories": [
+    "Testing",
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "hercules-run-config",
+          "title": "RUN CONFIG",
+          "icon": "media/hercules-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "hercules-run-config": [
+        {
+          "id": "herculesRunConfig",
+          "name": "Create Test Run",
+          "initialState": "expanded",
+          "icon": "$(list-filter)"
+        },
+        {
+          "id": "herculesGherkinScripts",
+          "name": "Gherkin Scripts",
+          "initialState": "collapsed",
+          "icon": "$(file-text)"
+        },
+        {
+          "id": "herculesTestData",
+          "name": "Test Data",
+          "initialState": "collapsed",
+          "icon": "$(database)"
+        },
+        {
+          "id": "herculesCombinedLiveView",
+          "name": "Live View & Logs",
+          "initialState": "collapsed",
+          "icon": "$(output)"
+        },
+        {
+          "id": "testzeusExecutionResults",
+          "name": "Enhanced Execution Results",
+          "initialState": "collapsed",
+          "icon": "$(test-view-icon)"
+        },
+        {
+          "id": "herculesEnvironmentTree",
+          "name": "Environment",
+          "initialState": "collapsed",
+          "icon": "$(settings-gear)"
+        },
+        {
+          "id": "herculesConfigurationTree",
+          "name": "Configuration",
+          "initialState": "collapsed",
+          "icon": "$(gear)"
+        },
+        {
+          "id": "herculesPermanentStorage",
+          "name": "Permanent Storage",
+          "initialState": "collapsed",
+          "icon": "$(database)"
+        },
+        {
+          "id": "herculesCdpBrowser",
+          "name": "CDP Browser",
+          "initialState": "collapsed",
+          "icon": "$(browser)"
+        },
+        {
+          "id": "herculesLogData",
+          "name": "Log Data",
+          "initialState": "collapsed",
+          "icon": "$(list-tree)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "testzeus-hercules.lintGherkinFile",
+        "title": "TestZeus Hercules: Lint Current Gherkin File",
+        "category": "TestZeus"
+      },
+      {
+        "command": "testzeus-hercules.lintAllGherkinFiles",
+        "title": "TestZeus Hercules: Lint All Gherkin Files",
+        "category": "TestZeus"
+      },
+      {
+        "command": "testzeus-hercules.openCdpBrowser",
+        "title": "TestZeus: Open CDP URL in Editor",
+        "category": "TestZeus"
+      },
+      {
+        "command": "testzeus-hercules.spawnCdpBrowser",
+        "title": "TestZeus Hercules: Spawn CDP Browser",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "testzeus-hercules.closeCdpBrowser",
+        "title": "TestZeus Hercules: Close CDP Browser",
+        "icon": "$(debug-disconnect)"
+      },
+      {
+        "command": "testzeus-hercules.manageCdpBrowser",
+        "title": "TestZeus Hercules: Manage CDP Browser",
+        "icon": "$(debug-configure)"
+      },
+      {
+        "command": "testzeus-hercules.refreshRunConfig",
+        "title": "Refresh Run Config",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "testzeus-hercules.startNewTest",
+        "title": "Start New Test",
+        "icon": "$(add)"
+      },
+      {
+        "command": "testzeus-hercules.selectTestConfig",
+        "title": "Select Test Configuration"
+      },
+      {
+        "command": "testzeus-hercules.selectFeatureForTest",
+        "title": "Select Feature File for Test"
+      },
+      {
+        "command": "testzeus-hercules.selectFeatureFile",
+        "title": "Select Feature File"
+      },
+      {
+        "command": "testzeus-hercules.addTestDataToTest",
+        "title": "Add Test Data to Test"
+      },
+      {
+        "command": "testzeus-hercules.selectTestDataFile",
+        "title": "Select Test Data File"
+      },
+      {
+        "command": "testzeus-hercules.removeTestDataFromTest",
+        "title": "Remove Test Data from Test"
+      },
+      {
+        "command": "testzeus-hercules.viewRunPayload",
+        "title": "View API Payload",
+        "icon": "$(json)"
+      },
+      {
+        "command": "testzeus-hercules.runTests",
+        "title": "Run Tests",
+        "icon": "$(play)"
+      },
+      {
+        "command": "testzeus-hercules.clearRunConfig",
+        "title": "Clear Run Configuration",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "testzeus-hercules.cancelFeatureSelection",
+        "title": "Cancel Feature Selection"
+      },
+      {
+        "command": "testzeus-hercules.cancelTestDataSelection",
+        "title": "Cancel Test Data Selection"
+      },
+      {
+        "command": "testzeus-hercules.openFeatureSelection",
+        "title": "Open Feature Selection View"
+      },
+      {
+        "command": "testzeus-hercules.toggleGherkinSelection",
+        "title": "Toggle Gherkin Script Selection"
+      },
+      {
+        "command": "testzeus-hercules.selectTestDataForGherkin",
+        "title": "Select Test Data for Gherkin Script"
+      },
+      {
+        "command": "testzeus-hercules.runSelectedTests",
+        "title": "Run Selected Tests",
+        "icon": "$(play)"
+      },
+      {
+        "command": "testzeus-hercules.clearRunConfigSelection",
+        "title": "Clear Run Config Selection",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "testzeus-hercules.startBackendServer",
+        "title": "Start Backend Server",
+        "icon": "$(plug)"
+      },
+      {
+        "command": "testzeus-hercules.refreshPermanentStorage",
+        "title": "Refresh Permanent Storage",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "testzeus-hercules.helloWorld",
+        "title": "TestZeus Hercules: Hello World"
+      },
+      {
+        "command": "testzeus-hercules.createTestData",
+        "title": "TestZeus Hercules: Create Test Data File",
+        "icon": {
+          "light": "resources/light/document-add.svg",
+          "dark": "resources/dark/document-add.svg"
+        }
+      },
+      {
+        "command": "testzeus-hercules.findTestData",
+        "title": "TestZeus Hercules: Find Test Data File",
+        "icon": {
+          "light": "resources/light/search.svg",
+          "dark": "resources/dark/search.svg"
+        }
+      },
+      {
+        "command": "testzeus-hercules.createTestDataFolder",
+        "title": "Hercules: Create New Test Data Folder",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "testzeus-hercules.deleteTestData",
+        "title": "Hercules: Delete Test Data File",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "testzeus-hercules.renameTestData",
+        "title": "Hercules: Rename Test Data File",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "testzeus-hercules.duplicateTestData",
+        "title": "Hercules: Duplicate Test Data File",
+        "icon": "$(files)"
+      },
+      {
+        "command": "testzeus-hercules.editTestData",
+        "title": "Hercules: Edit Test Data File",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "testzeus-hercules.refreshTestData",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "testzeus-hercules.openEnvFile",
+        "title": "Hercules: Open Environment File"
+      },
+      {
+        "command": "testzeus-hercules.editEnvFile",
+        "title": "Hercules: Edit Environment File"
+      },
+      {
+        "command": "testzeus-hercules.createEnvFile",
+        "title": "Hercules: Create Environment File"
+      },
+      {
+        "command": "testzeus-hercules.resetEnvFile",
+        "title": "Hercules: Reset Environment File from Template"
+      },
+      {
+        "command": "testzeus-hercules.openEnvLocation",
+        "title": "Hercules: Open Environment File Location"
+      },
+      {
+        "command": "testzeus-hercules.createGherkinScript",
+        "title": "TestZeus Hercules: Create Gherkin Script",
+        "icon": {
+          "light": "resources/light/document-add.svg",
+          "dark": "resources/dark/document-add.svg"
+        }
+      },
+      {
+        "command": "testzeus-hercules.findGherkinScript",
+        "title": "TestZeus Hercules: Find Gherkin Script",
+        "icon": {
+          "light": "resources/light/search.svg",
+          "dark": "resources/dark/search.svg"
+        }
+      },
+      {
+        "command": "testzeus-hercules.createGherkinFolder",
+        "title": "Hercules: Create New Folder",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "testzeus-hercules.deleteGherkinScript",
+        "title": "Hercules: Delete Gherkin Script",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "testzeus-hercules.renameGherkinScript",
+        "title": "Hercules: Rename Gherkin Script",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "testzeus-hercules.duplicateGherkinScript",
+        "title": "Hercules: Duplicate Gherkin Script",
+        "icon": "$(files)"
+      },
+      {
+        "command": "testzeus-hercules.editGherkinScript",
+        "title": "Hercules: Edit Gherkin Script",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "testzeus-hercules.runGherkinScript",
+        "title": "Hercules: Run Gherkin Script",
+        "icon": "$(play)"
+      },
+      {
+        "command": "testzeus-hercules.runHercules",
+        "title": "Hercules: Run with Current Configuration"
+      },
+      {
+        "command": "testzeus-hercules.showWelcome",
+        "title": "Hercules: Show Welcome Screen"
+      },
+      {
+        "command": "testzeus-hercules.openConfigFile",
+        "title": "Hercules: Open Configuration File"
+      },
+      {
+        "command": "testzeus-hercules.createConfigFile",
+        "title": "Hercules: Create Configuration File"
+      },
+      {
+        "command": "testzeus-hercules.editConfigFile",
+        "title": "Hercules: Edit Configuration File"
+      },
+      {
+        "command": "testzeus-hercules.resetConfigFile",
+        "title": "Hercules: Reset Configuration to Default"
+      },
+      {
+        "command": "testzeus-hercules.initializeHerculesDirectories",
+        "title": "Hercules: Initialize Directory Structure"
+      },
+      {
+        "command": "testzeus-hercules.initializeServerConFolder",
+        "title": "Hercules: Initialize Server Connection Folder"
+      },
+      {
+        "command": "testzeus-hercules.refreshGherkinScripts",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "testzeus-hercules.refreshLiveView",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "testzeus-hercules.refreshLiveLogs",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "testzeus-hercules.refreshExecutionResults",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "testzeus-hercules.clearLogs",
+        "title": "Clear Logs",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "testzeus-hercules.openLogsTerminal",
+        "title": "Open Logs Terminal",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "testzeus-hercules.showExecutionSummary",
+        "title": "TestZeus: Show Execution Summary",
+        "category": "TestZeus"
+      },
+      {
+        "command": "testzeus-hercules.openArtifact",
+        "title": "TestZeus: Open Test Artifact",
+        "category": "TestZeus"
+      },
+      {
+        "command": "testzeus-hercules.showTestDetails",
+        "title": "TestZeus: Show Test Details",
+        "category": "TestZeus"
+      },
+      {
+        "command": "testzeus-hercules.refreshEnhancedExecutionResults",
+        "title": "TestZeus: Refresh Enhanced Execution Results",
+        "icon": "$(refresh)",
+        "category": "TestZeus"
+      },
+      {
+        "command": "testzeus-hercules.openScreenshot",
+        "title": "Open Screenshot"
+      },
+      {
+        "command": "testzeus-hercules.openTestReport",
+        "title": "Open Test Report"
+      },
+      {
+        "command": "testzeus-hercules.setLocalEnvironment",
+        "title": "TestZeus Hercules: Set Local Execution Environment"
+      },
+      {
+        "command": "testzeus-hercules.setDockerEnvironment",
+        "title": "TestZeus Hercules: Set Docker Execution Environment"
+      },
+      {
+        "command": "testzeus-hercules.setVirtualEnvEnvironment",
+        "title": "TestZeus Hercules: Set Virtual Environment Execution"
+      },
+      {
+        "command": "testzeus-hercules.configureEnvironment",
+        "title": "TestZeus Hercules: Configure Execution Environment"
+      },
+      {
+        "command": "testzeus-hercules.updateServerUrls",
+        "title": "TestZeus Hercules: Update Server URLs",
+        "category": "TestZeus"
+      },
+      {
+        "command": "testzeus-hercules.refreshConfiguration",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "testzeus-hercules.openScriptConfig",
+        "title": "TestZeus Hercules: Open Script Configuration",
+        "category": "TestZeus Hercules"
+      },
+      {
+        "command": "testzeus-hercules.createScriptConfig",
+        "title": "Create New Script Configuration"
+      },
+      {
+        "command": "testzeus-hercules.openExecutionTerminal",
+        "title": "Open Execution Terminal Logs",
+        "category": "TestZeus",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "testzeus-hercules.refreshLogData",
+        "title": "Refresh Log Data",
+        "category": "TestZeus",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "testzeus-hercules.editScriptConfigRaw",
+        "title": "TestZeus Hercules: Edit Script Configuration as JSON",
+        "category": "TestZeus Hercules"
+      },
+      {
+        "command": "testzeus-hercules.setupProject",
+        "title": "TestZeus Hercules: Set Up Project",
+        "category": "TestZeus Hercules"
+      },
+      {
+        "command": "testzeus-hercules.runServer",
+        "title": "TestZeus Hercules: Run MCP Server",
+        "category": "TestZeus Hercules"
+      },
+      {
+        "command": "testzeus-hercules.checkHerculesInstall",
+        "title": "TestZeus Hercules: Check Hercules Installation",
+        "category": "TestZeus Hercules"
+      },
+      {
+        "command": "testzeus-hercules.installHercules",
+        "title": "TestZeus Hercules: Install Hercules",
+        "category": "TestZeus Hercules"
+      },
+      {
+        "command": "testzeus-hercules.installPlaywright",
+        "title": "TestZeus Hercules: Install Playwright",
+        "category": "TestZeus Hercules"
+      },
+      {
+        "command": "testzeus-hercules.setupEnvironment",
+        "title": "TestZeus Hercules: Setup Environment",
+        "category": "TestZeus Hercules"
+      },
+      {
+        "command": "testzeus-hercules.pullDockerImage",
+        "title": "TestZeus Hercules: Pull Docker Image",
+        "category": "TestZeus Hercules"
+      }
+    ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "testzeus-hercules.createTestData",
+          "when": "view == herculesTestData && viewItem == testDataFolder",
+          "group": "1_creation"
+        },
+        {
+          "command": "testzeus-hercules.createTestDataFolder",
+          "when": "view == herculesTestData && viewItem == testDataFolder",
+          "group": "1_creation"
+        },
+        {
+          "command": "testzeus-hercules.renameTestData",
+          "when": "view == herculesTestData && viewItem == testDataFile",
+          "group": "1_modification"
+        },
+        {
+          "command": "testzeus-hercules.duplicateTestData",
+          "when": "view == herculesTestData && viewItem == testDataFile",
+          "group": "1_modification"
+        },
+        {
+          "command": "testzeus-hercules.deleteTestData",
+          "when": "view == herculesTestData && viewItem == testDataFile",
+          "group": "9_cutcopypaste"
+        },
+        {
+          "command": "testzeus-hercules.renameTestData",
+          "when": "view == herculesTestData && viewItem == testDataFolder",
+          "group": "1_modification"
+        },
+        {
+          "command": "testzeus-hercules.deleteTestData",
+          "when": "view == herculesTestData && viewItem == testDataFolder",
+          "group": "9_cutcopypaste"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "testzeus-hercules.refreshRunConfig",
+          "when": "view == herculesRunConfig",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.refreshCdpBrowser",
+          "when": "view == herculesCdpBrowser",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.clearRunConfigSelection",
+          "when": "view == herculesRunConfig",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.refreshPermanentStorage",
+          "when": "view == herculesPermanentStorage",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.createTestData",
+          "when": "view == herculesTestData",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.findTestData",
+          "when": "view == herculesTestData",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.createTestDataFolder",
+          "when": "view == herculesTestData",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.refreshTestData",
+          "when": "view == herculesTestData",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.createGherkinScript",
+          "when": "view == herculesGherkinScripts",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.findGherkinScript",
+          "when": "view == herculesGherkinScripts",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.createGherkinFolder",
+          "when": "view == herculesGherkinScripts",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.refreshLogData",
+          "when": "view == herculesLogData",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.refreshGherkinScripts",
+          "when": "view == herculesGherkinScripts",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.refreshLiveView",
+          "when": "view == herculesCombinedLiveView",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.clearLogs",
+          "when": "view == herculesCombinedLiveView",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.openLogsTerminal",
+          "when": "view == herculesCombinedLiveView",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.refreshExecutionResults",
+          "when": "view == herculesExecutionResults",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.refreshEnhancedExecutionResults",
+          "when": "view == testzeusExecutionResults",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.refreshConfiguration",
+          "when": "view == herculesConfigurationTree",
+          "group": "navigation"
+        },
+        {
+          "command": "testzeus-hercules.createScriptConfig",
+          "when": "view == herculesConfigurationTree"
+        },
+        {
+          "command": "testzeus-hercules.createGherkinScript",
+          "when": "view == herculesGherkinScripts && viewItem == gherkinFolder",
+          "group": "1_creation"
+        },
+        {
+          "command": "testzeus-hercules.createGherkinFolder",
+          "when": "view == herculesGherkinScripts && viewItem == gherkinFolder",
+          "group": "1_creation"
+        },
+        {
+          "command": "testzeus-hercules.renameGherkinScript",
+          "when": "view == herculesGherkinScripts && viewItem == gherkinScript",
+          "group": "1_modification"
+        },
+        {
+          "command": "testzeus-hercules.duplicateGherkinScript",
+          "when": "view == herculesGherkinScripts && viewItem == gherkinScript",
+          "group": "1_modification"
+        },
+        {
+          "command": "testzeus-hercules.deleteGherkinScript",
+          "when": "view == herculesGherkinScripts && viewItem == gherkinScript",
+          "group": "9_cutcopypaste"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "testzeus-hercules.runGherkinScript",
+          "when": "resourceExtname == .feature",
+          "group": "navigation"
+        },
+        {
+          "when": "resourceExtension == .json",
+          "command": "testzeus-hercules.openScriptConfig",
+          "group": "testzeus"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "testzeus-hercules.showWelcome"
+        },
+        {
+          "command": "testzeus-hercules.openConfigFile"
+        },
+        {
+          "command": "testzeus-hercules.createConfigFile"
+        },
+        {
+          "command": "testzeus-hercules.editConfigFile"
+        },
+        {
+          "command": "testzeus-hercules.resetConfigFile"
+        },
+        {
+          "command": "testzeus-hercules.openEnvFile"
+        },
+        {
+          "command": "testzeus-hercules.editEnvFile"
+        },
+        {
+          "command": "testzeus-hercules.createEnvFile"
+        },
+        {
+          "command": "testzeus-hercules.resetEnvFile"
+        },
+        {
+          "command": "testzeus-hercules.initializeHerculesDirectories"
+        },
+        {
+          "command": "testzeus-hercules.runHercules"
+        },
+        {
+          "command": "testzeus-hercules.createGherkinScript"
+        },
+        {
+          "command": "testzeus-hercules.findGherkinScript"
+        },
+        {
+          "command": "testzeus-hercules.createGherkinFolder"
+        },
+        {
+          "command": "testzeus-hercules.deleteGherkinScript",
+          "when": "false"
+        },
+        {
+          "command": "testzeus-hercules.renameGherkinScript",
+          "when": "false"
+        },
+        {
+          "command": "testzeus-hercules.duplicateGherkinScript",
+          "when": "false"
+        },
+        {
+          "command": "testzeus-hercules.deleteTestData",
+          "when": "false"
+        },
+        {
+          "command": "testzeus-hercules.renameTestData",
+          "when": "false"
+        },
+        {
+          "command": "testzeus-hercules.duplicateTestData",
+          "when": "false"
+        },
+        {
+          "command": "testzeus-hercules.openScriptConfig",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "command": "testzeus-hercules.createScriptConfig",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "command": "testzeus-hercules.editScriptConfigRaw",
+          "when": "workspaceFolderCount > 0"
+        }
+      ],
+      "editor/title": [],
+      "editor/context": [
+        {
+          "command": "testzeus-hercules.lintGherkinFile",
+          "when": "editorLangId == feature",
+          "group": "testZeusGherkin@1"
+        },
+        {
+          "command": "testzeus-hercules.lintAllGherkinFiles",
+          "when": "editorLangId == feature",
+          "group": "testZeusGherkin@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "TestZeus Hercules",
+      "properties": {
+        "testzeus-hercules.configFilePath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to Hercules configuration file"
+        },
+        "testzeus-hercules.envFilePath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to Hercules environment file"
+        },
+        "testzeus-hercules.llmModel": {
+          "type": "string",
+          "default": "gpt-4o",
+          "description": "LLM model to use (e.g., gpt-4o)",
+          "enum": [
+            "gpt-4o",
+            "gpt-4",
+            "gpt-3.5-turbo",
+            "claude-3-5-haiku",
+            "claude-3-opus"
+          ],
+          "order": 1,
+          "group": "LLM Configuration"
+        },
+        "testzeus-hercules.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for the LLM model",
+          "order": 2,
+          "group": "LLM Configuration"
+        },
+        "testzeus-hercules.llmConfigFile": {
+          "type": "string",
+          "default": "",
+          "description": "Path to JSON configuration file for LLM settings (e.g., agents_llm_config.json)",
+          "order": 3,
+          "group": "LLM Configuration",
+          "scope": "resource",
+          "format": "file"
+        },
+        "testzeus-hercules.llmConfigFileRefKey": {
+          "type": "string",
+          "default": "",
+          "description": "The key for the config stanza to use from the LLM config file (e.g., 'openai_gpt', 'mistral', 'anthropic')",
+          "order": 4,
+          "group": "LLM Configuration"
+        },
+        "testzeus-hercules.projectBasePath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the project base directory (e.g., './opt')",
+          "order": 1,
+          "group": "Project Settings"
+        },
+        "testzeus-hercules.gherkinScriptsPath": {
+          "type": "string",
+          "default": "input",
+          "description": "Path to Gherkin scripts directory (relative to project base)",
+          "order": 2,
+          "group": "Project Settings"
+        },
+        "testzeus-hercules.apiBaseUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:8000",
+          "description": "Base URL for the TestZeus HTTP API",
+          "order": 1,
+          "group": "Server Configuration"
+        },
+        "testzeus-hercules.wsBaseUrl": {
+          "type": "string",
+          "default": "ws://127.0.0.1:8000",
+          "description": "Base URL for the TestZeus WebSocket API",
+          "order": 2,
+          "group": "Server Configuration"
+        },
+        "testzeus-hercules.outputPath": {
+          "type": "string",
+          "default": "output",
+          "description": "Path to output directory (relative to project base)",
+          "order": 3,
+          "group": "Project Settings"
+        },
+        "testzeus-hercules.testDataPath": {
+          "type": "string",
+          "default": "test_data",
+          "description": "Path to test data directory (relative to project base)",
+          "order": 4,
+          "group": "Project Settings"
+        },
+        "testzeus-hercules.browser": {
+          "type": "string",
+          "default": "chromium",
+          "enum": [
+            "chromium",
+            "firefox",
+            "webkit"
+          ],
+          "description": "Browser to use for running tests",
+          "order": 1,
+          "group": "Browser Settings"
+        },
+        "testzeus-hercules.headless": {
+          "type": "boolean",
+          "default": true,
+          "description": "Run browser in headless mode",
+          "order": 2,
+          "group": "Browser Settings"
+        },
+        "testzeus-hercules.recordVideo": {
+          "type": "boolean",
+          "default": true,
+          "description": "Record test execution videos",
+          "order": 3,
+          "group": "Browser Settings"
+        },
+        "testzeus-hercules.takeScreenshots": {
+          "type": "boolean",
+          "default": true,
+          "description": "Take screenshots during test execution",
+          "order": 4,
+          "group": "Browser Settings"
+        },
+        "testzeus-hercules.browserResolution": {
+          "type": "string",
+          "default": "",
+          "description": "Browser window resolution (format: width,height). Example: 1920,1080",
+          "order": 5,
+          "group": "Browser Settings"
+        },
+        "testzeus-hercules.runDevice": {
+          "type": "string",
+          "default": "",
+          "description": "Device to emulate for mobile testing (e.g., 'iPhone 15 Pro Max')",
+          "order": 6,
+          "group": "Browser Settings"
+        },
+        "testzeus-hercules.captureNetwork": {
+          "type": "boolean",
+          "default": false,
+          "description": "Capture network logs during test execution",
+          "order": 7,
+          "group": "Browser Settings"
+        },
+        "testzeus-hercules.cdpEndpointUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Chrome DevTools Protocol (CDP) endpoint URL to connect to an external browser instance",
+          "order": 8,
+          "group": "Browser Settings"
+        },
+        "testzeus-hercules.chromePath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to Chrome executable for CDP browser spawning (leave empty for auto-detection)",
+          "order": 9,
+          "group": "Browser Settings"
+        },
+        "testzeus-hercules.loadExtraTools": {
+          "type": "boolean",
+          "default": false,
+          "description": "Load additional tools for extended functionality",
+          "order": 1,
+          "group": "Advanced Settings"
+        },
+        "testzeus-hercules.telemetryEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable telemetry to help improve TestZeus Hercules",
+          "order": 2,
+          "group": "Advanced Settings"
+        },
+        "testzeus-hercules.backendServerHealthPath": {
+          "type": "string",
+          "default": "http://127.0.0.1:8000/",
+          "description": "URL path for backend server health check",
+          "order": 3,
+          "group": "Advanced Settings"
+        },
+        "testzeus-hercules.autoMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Skip email prompt during test runs",
+          "order": 3,
+          "group": "Advanced Settings"
+        },
+        "testzeus-hercules.enablePlaywrightTracing": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable Playwright tracing for improved debugging",
+          "order": 4,
+          "group": "Advanced Settings"
+        }
+      }
+    },
+    "viewsWelcome": [
+      {
+        "view": "herculesPermanentStorage",
+        "contents": "No files found in permanent storage. Permanent storage is powered by /serverMem/data/manager/perm from extensionGlobalStorage. This is a file explorer for your persistent data."
+      },
+      {
+        "view": "herculesTestData",
+        "contents": "No test data files found. \n[Create Test Data File](command:testzeus-hercules.createTestData)"
+      },
+      {
+        "view": "herculesGherkinScripts",
+        "contents": "No Gherkin scripts found. \n[Create Gherkin Script](command:testzeus-hercules.createGherkinScript)"
+      },
+      {
+        "view": "herculesEnvironmentTree",
+        "contents": "Configure your TestZeus Hercules environment. \n[Configure Environment](command:testzeus-hercules.configureEnvironment)"
+      }
+    ],
+    "languages": [
+      {
+        "id": "feature",
+        "aliases": [
+          "Gherkin",
+          "Cucumber"
+        ],
+        "extensions": [
+          ".feature"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "testzeus-hercules.lintGherkinFile",
+        "key": "ctrl+alt+l",
+        "mac": "cmd+alt+l",
+        "when": "editorLangId == feature"
+      },
+      {
+        "command": "testzeus-hercules.lintAllGherkinFiles",
+        "key": "ctrl+alt+shift+l",
+        "mac": "cmd+alt+shift+l"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "gherkin-lint": "^4.2.4",
+    "gherkin-lint-ts": "^5.0.6"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.99.1",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.99.7",
+    "webpack-cli": "^6.0.1"
+  }
+}

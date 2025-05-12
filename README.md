@@ -188,6 +188,24 @@ PROJECT_BASE/
 
 ## Extension Development
 
+To start working on the extension:
+
+1. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+2. Compile the extension:
+   ```bash
+   pnpm run compile
+   ```
+
+3. Launch the extension in a new VS Code window:
+   ```bash
+   code --extensionDevelopmentPath=${PWD}
+   ```
+
+Alternatively, after installing dependencies:
 - Run `pnpm compile` to compile the extension
 - Press F5 to run the extension in a new VS Code window
 

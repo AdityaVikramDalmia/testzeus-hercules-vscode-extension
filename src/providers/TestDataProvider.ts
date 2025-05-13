@@ -66,10 +66,10 @@ export class TestDataProvider implements vscode.TreeDataProvider<TestData> {
                 
                 // If the directory is empty, create a sample file
                 const entries = fs.readdirSync(serverMemTestDataPath, { withFileTypes: true });
-                if (entries.length === 0) {
-                    this.createSampleTestDataFile(serverMemTestDataPath);
-                    console.log(`Created sample Test Data file in ${serverMemTestDataPath}`);
-                }
+                // if (entries.length === 0) {
+                //     this.createSampleTestDataFile(serverMemTestDataPath);
+                //     console.log(`Created sample Test Data file in ${serverMemTestDataPath}`);
+                // }
                 
                 return this.getTestDataInFolder(serverMemTestDataPath);
             } catch (error) {

@@ -60,28 +60,28 @@ export class GherkinScriptsProvider implements vscode.TreeDataProvider<GherkinSc
                 
                 // If the directory is empty, create a sample script
                 const entries = fs.readdirSync(serverMemFeaturesPath, { withFileTypes: true });
-                if (entries.length === 0) {
-                    createSampleGherkinScript(serverMemFeaturesPath);
-                    console.log(`Created sample Gherkin script in ${serverMemFeaturesPath}`);
-                }
+                // if (entries.length === 0) {
+                //     createSampleGherkinScript(serverMemFeaturesPath);
+                //     console.log(`Created sample Gherkin script in ${serverMemFeaturesPath}`);
+                // }
                 
                 // Check if we need to migrate scripts from the old location
-                const folders = pathManager.createHerculesFolders();
-                if (folders && folders.input && pathExists(folders.input)) {
-                    // Check if we need to copy existing scripts
-                    const inputEntries = fs.readdirSync(folders.input, { withFileTypes: true });
-                    for (const entry of inputEntries) {
-                        if (entry.isFile() && entry.name.endsWith('.feature')) {
-                            const sourcePath = path.join(folders.input, entry.name);
-                            const destPath = path.join(serverMemFeaturesPath, entry.name);
-                            // Only copy if the file doesn't exist in the destination
-                            if (!fs.existsSync(destPath)) {
-                                fs.copyFileSync(sourcePath, destPath);
-                                console.log(`Migrated ${entry.name} to serverMem features directory`);
-                            }
-                        }
-                    }
-                }
+                // const folders = pathManager.createHerculesFolders();
+                // if (folders && folders.input && pathExists(folders.input)) {
+                //     // Check if we need to copy existing scripts
+                //     const inputEntries = fs.readdirSync(folders.input, { withFileTypes: true });
+                //     for (const entry of inputEntries) {
+                //         if (entry.isFile() && entry.name.endsWith('.feature')) {
+                //             const sourcePath = path.join(folders.input, entry.name);
+                //             const destPath = path.join(serverMemFeaturesPath, entry.name);
+                //             // Only copy if the file doesn't exist in the destination
+                //             if (!fs.existsSync(destPath)) {
+                //                 fs.copyFileSync(sourcePath, destPath);
+                //                 console.log(`Migrated ${entry.name} to serverMem features directory`);
+                //             }
+                //         }
+                //     }
+                // }
                 
                 return this.getGherkinScriptsInFolder(serverMemFeaturesPath);
             } catch (error) {

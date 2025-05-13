@@ -200,6 +200,50 @@ To start working on the extension:
    pnpm run compile
    ```
 
+## Packaging the Extension
+
+To create a distributable VSIX package of the extension:
+
+1. Make sure you have the VS Code Extension Manager installed:
+   ```bash
+   pnpm add -D @vscode/vsce
+   ```
+
+2. Compile the extension first:
+   ```bash
+   pnpm compile
+   ```
+
+3. Create a production build:
+   ```bash
+   pnpm run package
+   ```
+
+4. Generate the VSIX package:
+   ```bash
+   npx @vscode/vsce package --no-dependencies
+   ```
+
+5. The VSIX file will be created in the root directory of your project with a name like:
+   ```
+   testzeus-hercules-test-0.0.1.vsix
+   ```
+
+### Installing the Packaged Extension
+
+To install the extension from the VSIX file:
+
+```bash
+code --install-extension testzeus-hercules-test-0.0.1.vsix
+```
+
+You can also install it through the VS Code UI:
+1. Open VS Code
+2. Go to the Extensions view (Ctrl+Shift+X or Cmd+Shift+X on macOS)
+3. Click on the "..." menu in the top-right of the Extensions view
+4. Select "Install from VSIX..."
+5. Browse to and select your VSIX file
+
 3. Launch the extension in a new VS Code window:
    ```bash
    code --extensionDevelopmentPath=${PWD}

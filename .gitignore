@@ -16,7 +16,6 @@ lib/
 !jest.config.js
 
 # VSCode extension specific
-*.vsix
 .vscode-test/
 
 # Editor settings

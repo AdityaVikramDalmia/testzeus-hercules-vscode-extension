@@ -218,6 +218,11 @@
         "title": "TestZeus Hercules: Hello World"
       },
       {
+        "command": "testzeus-hercules.improveGherkinWithCopilot",
+        "title": "TestZeus Hercules: Improve Gherkin Script with Copilot",
+        "icon": "$(wand)"
+      },
+      {
         "command": "testzeus-hercules.createTestData",
         "title": "TestZeus Hercules: Create Test Data File",
         "icon": {
@@ -772,6 +777,11 @@
       "editor/title": [],
       "editor/context": [
         {
+          "command": "testzeus-hercules.improveGherkinWithCopilot",
+          "when": "resourceExtname == .feature",
+          "group": "navigation"
+        },
+        {
           "command": "testzeus-hercules.lintGherkinFile",
           "when": "editorLangId == feature",
           "group": "testZeusGherkin@1"
@@ -926,7 +936,13 @@
           "type": "boolean",
           "default": false,
           "description": "Capture network logs during test execution",
-          "order": 7,
+          "order": 7
+        },
+        "testzeusHercules.openaiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for OpenAI to improve Gherkin scripts",
+          "order": 8,
           "group": "Browser Settings"
         },
         "testzeus-hercules.cdpEndpointUrl": {

@@ -42,6 +42,7 @@ import {
     createGherkinFolder,
     findGherkinScript
 } from './commands/gherkinCommands';
+import { improveGherkinWithCopilot } from './commands/improveGherkinCommand';
 import {
     createTestData,
     deleteTestData,
@@ -300,7 +301,12 @@ export function activate(context: vscode.ExtensionContext) {
             await createGherkinFolder(folder);
             gherkinScriptsProvider.refresh();
         }),
-        vscode.commands.registerCommand('testzeus-hercules.findGherkinScript', findGherkinScript),
+        vscode.commands.registerCommand('testzeus-hercules.findGherkinScript', findGherkinScript)
+    );
+    
+    // Register command to improve Gherkin scripts using Copilot
+    context.subscriptions.push(
+        vscode.commands.registerCommand('testzeus-hercules.improveGherkinWithCopilot', improveGherkinWithCopilot)
     );
     
     // Register commands for Test Data management

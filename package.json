@@ -3,6 +3,7 @@
   "displayName": "TestZeus Hercules",
   "description": "VS Code extension for TestZeus Hercules - the world's first AI testing agent",
   "version": "0.0.1",
+  "publisher": "testzeus",
   "engines": {
     "vscode": "^1.99.1"
   },
@@ -475,6 +476,11 @@
       {
         "command": "testzeus-hercules.runServer",
         "title": "TestZeus Hercules: Run MCP Server",
+        "category": "TestZeus Hercules"
+      },
+      {
+        "command": "testzeus-hercules.setup_data_test",
+        "title": "TestZeus Hercules: Setup the Initial Data",
         "category": "TestZeus Hercules"
       },
       {

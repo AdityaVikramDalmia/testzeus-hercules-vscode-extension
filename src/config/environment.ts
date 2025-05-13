@@ -15,7 +15,7 @@ export function getApiBaseUrl(): string {
 }
 
 export function getRunTemplateEndpoint(): string {
-    return `${getApiBaseUrl()}/tests/run-from-template`;
+    return `${getApiBaseUrl()}/tests/run-from-template-new`;
 }
 
 // WebSocket URLs

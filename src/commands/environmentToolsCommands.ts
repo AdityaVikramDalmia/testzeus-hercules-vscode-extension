@@ -93,6 +93,73 @@ export async function setupProject(): Promise<void> {
     }
 }
 
+export async function copyTestDataWithSamples(): Promise<void> {
+    try {
+        const pathManager = PathManager.getInstance();
+        const globalStoragePath = pathManager.getGlobalStoragePath();
+        const serverMemPath = path.join(globalStoragePath, 'serverMem');
+        const dataPath = path.join(serverMemPath, 'data');
+
+        
+        await vscode.window.withProgress({
+            location: vscode.ProgressLocation.Notification,
+            title: 'Step 1: Starting to copy test data',
+            cancellable: false
+        }, async (progress) => {
+            
+            // Create serverMem directory if it doesn't exist
+            if (!fs.existsSync(serverMemPath)) {
+                fs.mkdirSync(serverMemPath, { recursive: true });
+            }
+            
+            // Change to serverMem directory and clone the repository
+            try {
+                // First navigate to the directory
+                process.chdir(serverMemPath);
+                
+                // Check if directory is empty or not
+                const files = fs.readdirSync(dataPath);
+                if (files.length > 0) {
+                    // Directory not empty, ask user if they want to remove existing content
+                    const shouldContinue = await vscode.window.showWarningMessage(
+                        'The Data directory is not empty. Do you want to remove existing content and continue?',
+                        'Yes', 'No'
+                    );
+                    
+                    if (shouldContinue === 'No') {
+                        return;
+                    }
+                    
+                    // Remove existing content
+                    for (const file of files) {
+                        const filePath = path.join(dataPath, file);
+                        if (fs.lstatSync(filePath).isDirectory()) {
+                            fs.rmSync(filePath, { recursive: true, force: true });
+                        } else {
+                            fs.unlinkSync(filePath);
+                        }
+                    }
+                }
+                
+                const terminal = vscode.window.createTerminal('Copy Sample Data');
+                terminal.sendText(`cd "${serverMemPath}"  && rm -rf data && cp -r data_sample data`);
+                
+                // Clone the repository - updated URL to match the specified one
+                // await execAsync(`cp data_sample data`);
+                
+                progress.report({ increment: 100, message: 'Copy Test Data complete!' });
+                vscode.window.showInformationMessage(`Step 1: Project setup completed successfully at: ${serverMemPath}`);
+            } catch (error) {
+                console.error('Error during project setup:', error);
+                vscode.window.showErrorMessage(`Error during project setup: ${error instanceof Error ? error.message : String(error)}`);
+            }
+        });
+    } catch (error) {
+        vscode.window.showErrorMessage(`Error setting up project: ${error instanceof Error ? error.message : String(error)}`);
+    }
+}
+
+
 /**
  * Helper function to copy a directory recursively
  */
@@ -191,7 +258,7 @@ export async function installHercules(): Promise<void> {
                 process.chdir(serverMemPath);
                 
                 // Create virtual environment
-                await execAsync('python -m venv venv');
+                await execAsync('python3.10 -m venv venv');
                 
                 progress.report({ increment: 30, message: 'Installing requirements...' });
                 

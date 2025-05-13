@@ -313,6 +313,7 @@ export async function createGherkinFolder(parentFolder?: any): Promise<void> {
         // Initialize the directory structure if it doesn't exist
         const pathManager = PathManager.getInstance();
         const globalStoragePath = pathManager.getGlobalStoragePath();
+        vscode.window.showInformationMessage(`Global Storage Path: ${globalStoragePath}`);
         
         // Use the serverMem/data/manager/lib/features path
         const serverMemFeaturesPath = getServerMemFeaturesPath(globalStoragePath);
@@ -321,6 +322,14 @@ export async function createGherkinFolder(parentFolder?: any): Promise<void> {
         let basePath = serverMemFeaturesPath;
         if (parentFolder && parentFolder.resourceUri) {
             basePath = parentFolder.resourceUri.fsPath;
+            
+            // Check if the provided path is actually a directory
+            const stats = fs.statSync(basePath);
+            if (!stats.isDirectory()) {
+                // If it's a file (like a .feature file), use its parent directory instead
+                basePath = path.dirname(basePath);
+                vscode.window.showInformationMessage(`Using parent directory of ${path.basename(parentFolder.resourceUri.fsPath)}`);
+            }
         }
         
         // Ask for a folder name
@@ -331,8 +340,12 @@ export async function createGherkinFolder(parentFolder?: any): Promise<void> {
                 if (!value) {
                     return 'Folder name is required';
                 }
-                if (!/^[a-zA-Z0-9_\-\.]+$/.test(value)) {
-                    return 'Folder name contains invalid characters';
+                // Validate folder name - no extensions to avoid confusion
+                if (path.extname(value)) {
+                    return 'Folder names should not have file extensions';
+                }
+                if (!/^[a-zA-Z0-9_\-]+$/.test(value)) {
+                    return 'Folder name contains invalid characters. Use letters, numbers, underscore and hyphen.';
                 }
                 return null;
             }

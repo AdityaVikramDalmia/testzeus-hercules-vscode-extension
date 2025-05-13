@@ -123,7 +123,7 @@ export async function startBackendServer(): Promise<void> {
         
         // Open a terminal and run the server
         const terminal = vscode.window.createTerminal('Backend Server');
-        terminal.sendText(`cd "${serverMemPath}" && python server.py`);
+        terminal.sendText(`cd "${serverMemPath}" && source venv/bin/activate && python server.py`);
         terminal.show();
         
         vscode.window.showInformationMessage('Starting backend server. Checking connection...');

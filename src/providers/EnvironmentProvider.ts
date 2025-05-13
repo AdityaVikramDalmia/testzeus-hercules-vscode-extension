@@ -122,6 +122,18 @@ export class EnvironmentProvider implements vscode.TreeDataProvider<EnvironmentI
                     'tool-install',
                     'package'
                 ),
+                new EnvironmentItem(
+                    'Replace Data with sample Data',
+                    vscode.TreeItemCollapsibleState.None,
+                    'Create Python venv and install requirements',
+                    {
+                        command: 'testzeus-hercules.setup_data_test',
+                        title: 'Setup Test Data',
+                        arguments: []
+                    },
+                    'tool-install',
+                    'package'
+                ),
                 // Step 3: Run Server
                 new EnvironmentItem(
                     'Step 3: Run Server',

@@ -1312,6 +1312,9 @@ export class RunConfigProvider implements vscode.TreeDataProvider<RunConfig> {
             
             try {
                 // Make API call to run tests
+                // vscode.window.showInformationMessage(`${getRunTemplateEndpoint()}`)
+                // vscode.window.showInformationMessage(`${JSON.stringify(payload, )}`)
+
                 const response = await axios.post(getRunTemplateEndpoint(), payload, {
                     headers: {
                         'accept': 'application/json',
@@ -1319,7 +1322,8 @@ export class RunConfigProvider implements vscode.TreeDataProvider<RunConfig> {
                     }
                 });
                 
-                console.log('Test run initiated:', response.data);
+                // console.log('Test run initiated:', response.data);
+                // vscode.window.showInformationMessage(`Data Received Back ${JSON.stringify(response.data)}`);
                 vscode.window.showInformationMessage('Test run initiated successfully!');
             } catch (apiError) {
                 console.error('Error calling API:', apiError);

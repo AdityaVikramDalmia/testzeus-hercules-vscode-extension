@@ -90,7 +90,7 @@ import {
     setVirtualEnvEnvironment,
     configureEnvironment
 } from './commands/environmentCommands';
-import { checkHerculesInstall, installHercules, installPlaywright, setupEnvironment, pullDockerImage, setupProject, runServer } from './commands/environmentToolsCommands';
+import { checkHerculesInstall, installHercules, installPlaywright, setupEnvironment, pullDockerImage, setupProject, runServer, copyTestDataWithSamples } from './commands/environmentToolsCommands';
 import { CONFIG_NAMESPACE } from './constants/config';
 import { ResourceManager } from './utils/resourceManager';
 import { ConfigStorage } from './utils/configStorage';
@@ -518,7 +518,9 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('testzeus-hercules.setupEnvironment', setupEnvironment),
         vscode.commands.registerCommand('testzeus-hercules.pullDockerImage', pullDockerImage),
         vscode.commands.registerCommand('testzeus-hercules.setupProject', setupProject),
-        vscode.commands.registerCommand('testzeus-hercules.runServer', runServer)
+        vscode.commands.registerCommand('testzeus-hercules.runServer', runServer),
+        vscode.commands.registerCommand('testzeus-hercules.setup_data_test', copyTestDataWithSamples)
+
     );
     
     // Register settings commands

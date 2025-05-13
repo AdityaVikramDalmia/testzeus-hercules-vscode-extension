@@ -229,7 +229,9 @@ function createPrompt(originalText: string, metadata: string[]): string {
     prompt += '\nORIGINAL GHERKIN SCRIPT:\n```gherkin\n' + originalText + '\n```\n\n';
     
     prompt += 'Return ONLY the improved Gherkin script without any explanations or additional text. ';
-    prompt += 'Your response should be in valid Gherkin format that can be directly used in Cucumber/Behave frameworks.';
+    prompt += 'Your response should be in valid Gherkin format that can be directly used in Cucumber/Behave frameworks. ';
+    prompt += 'IMPORTANT: DO NOT include ```gherkin or ``` markers in your response. ';
+    prompt += 'Just return the raw Gherkin content starting with Feature: with no markdown formatting.';
     
     return prompt;
 }

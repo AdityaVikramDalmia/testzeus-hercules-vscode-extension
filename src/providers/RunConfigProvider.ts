@@ -1051,6 +1051,7 @@ export class RunConfigProvider implements vscode.TreeDataProvider<RunConfig> {
     async browseAllTestData(): Promise<void> {
         try {
             // Get all test data files
+            vscode.window.showInformationMessage(`PATH FOR TEST DATA: ${this.testDataPath}`);
             const allTestData = await this.getAllTestDataFiles(this.testDataPath);
             
             if (allTestData.length === 0) {
@@ -1101,7 +1102,7 @@ export class RunConfigProvider implements vscode.TreeDataProvider<RunConfig> {
                     if (entry.isDirectory()) {
                         // Recursively search subdirectories
                         await searchDirectory(fullPath);
-                    } else if (entry.name.endsWith('.json')) {
+                    } else if (entry.name.endsWith('.txt')) {
                         // Calculate relative path from testDataPath
                         const relativePath = path.relative(this.testDataPath, fullPath);
                         results.push({
@@ -1402,9 +1403,9 @@ export class RunConfigProvider implements vscode.TreeDataProvider<RunConfig> {
         
         // Add CDP URL if available
         const cdpUrl = this.getCdpEndpointUrl();
-        if (cdpUrl) {
-            payload.cdp_endpoint_url = cdpUrl;
-        }
+        // if (cdpUrl) {
+        //     payload.cdp_endpoint_url = cdpUrl;
+        // }
         
         return payload;
     }
